@@ -35,7 +35,7 @@ namespace SQLQueryStress
             this.connectionPooling_checkBox = new System.Windows.Forms.CheckBox();
             this.clientDataRetrieval_checkBox = new System.Windows.Forms.CheckBox();
             this.ok_button = new System.Windows.Forms.Button();
-            this.cancel_button = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.connectionTimeout_numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,7 +50,7 @@ namespace SQLQueryStress
             // IOStatistics_checkBox
             // 
             this.IOStatistics_checkBox.AutoSize = true;
-            this.IOStatistics_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IOStatistics_checkBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IOStatistics_checkBox.Location = new System.Drawing.Point(6, 58);
             this.IOStatistics_checkBox.Name = "IOStatistics_checkBox";
             this.IOStatistics_checkBox.Size = new System.Drawing.Size(144, 17);
@@ -61,7 +61,7 @@ namespace SQLQueryStress
             // timeStatistics_checkBox
             // 
             this.timeStatistics_checkBox.AutoSize = true;
-            this.timeStatistics_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeStatistics_checkBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeStatistics_checkBox.Location = new System.Drawing.Point(6, 81);
             this.timeStatistics_checkBox.Name = "timeStatistics_checkBox";
             this.timeStatistics_checkBox.Size = new System.Drawing.Size(152, 17);
@@ -72,7 +72,7 @@ namespace SQLQueryStress
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 13);
@@ -82,7 +82,7 @@ namespace SQLQueryStress
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(196, 13);
@@ -92,7 +92,7 @@ namespace SQLQueryStress
             // connectionPooling_checkBox
             // 
             this.connectionPooling_checkBox.AutoSize = true;
-            this.connectionPooling_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.connectionPooling_checkBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.connectionPooling_checkBox.Location = new System.Drawing.Point(6, 58);
             this.connectionPooling_checkBox.Name = "connectionPooling_checkBox";
             this.connectionPooling_checkBox.Size = new System.Drawing.Size(179, 17);
@@ -103,7 +103,7 @@ namespace SQLQueryStress
             // clientDataRetrieval_checkBox
             // 
             this.clientDataRetrieval_checkBox.AutoSize = true;
-            this.clientDataRetrieval_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientDataRetrieval_checkBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clientDataRetrieval_checkBox.Location = new System.Drawing.Point(6, 104);
             this.clientDataRetrieval_checkBox.Name = "clientDataRetrieval_checkBox";
             this.clientDataRetrieval_checkBox.Size = new System.Drawing.Size(195, 17);
@@ -113,7 +113,7 @@ namespace SQLQueryStress
             // 
             // ok_button
             // 
-            this.ok_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ok_button.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ok_button.Location = new System.Drawing.Point(344, 170);
             this.ok_button.Name = "ok_button";
             this.ok_button.Size = new System.Drawing.Size(75, 23);
@@ -122,17 +122,17 @@ namespace SQLQueryStress
             this.ok_button.UseVisualStyleBackColor = true;
             this.ok_button.Click += new System.EventHandler(this.ok_button_Click);
             // 
-            // cancel_button
+            // btnCancel
             // 
-            this.cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel_button.Location = new System.Drawing.Point(425, 170);
-            this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(75, 23);
-            this.cancel_button.TabIndex = 3;
-            this.cancel_button.Text = "Cancel";
-            this.cancel_button.UseVisualStyleBackColor = true;
-            this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(425, 170);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupBox1
             // 
@@ -186,7 +186,7 @@ namespace SQLQueryStress
             // killQueriesOnCancel_checkBox
             // 
             this.killQueriesOnCancel_checkBox.AutoSize = true;
-            this.killQueriesOnCancel_checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killQueriesOnCancel_checkBox.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.killQueriesOnCancel_checkBox.Location = new System.Drawing.Point(6, 127);
             this.killQueriesOnCancel_checkBox.Name = "killQueriesOnCancel_checkBox";
             this.killQueriesOnCancel_checkBox.Size = new System.Drawing.Size(151, 17);
@@ -212,11 +212,11 @@ namespace SQLQueryStress
             this.AcceptButton = this.ok_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancel_button;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(514, 202);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.cancel_button);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.ok_button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -245,7 +245,7 @@ namespace SQLQueryStress
         private System.Windows.Forms.CheckBox connectionPooling_checkBox;
         private System.Windows.Forms.CheckBox clientDataRetrieval_checkBox;
         private System.Windows.Forms.Button ok_button;
-        private System.Windows.Forms.Button cancel_button;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown connectionTimeout_numericUpDown;

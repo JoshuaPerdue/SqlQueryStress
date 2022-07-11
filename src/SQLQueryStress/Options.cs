@@ -26,7 +26,7 @@ namespace SQLQueryStress
             killQueriesOnCancel_checkBox.Checked = settings.KillQueriesOnCancel;
         }
 
-        private void cancel_button_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             Dispose();
         }

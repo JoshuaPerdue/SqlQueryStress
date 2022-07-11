@@ -135,7 +135,7 @@ namespace SQLQueryStress
 
         private void StartProcessing(object sender, EventArgs e)
         {
-            go_button.PerformClick();
+            btnGo.PerformClick();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,8 +215,8 @@ namespace SQLQueryStress
 
             UpdateUi();
 
-            go_button.Enabled = true;
-            cancel_button.Enabled = false;
+            btnGo.Enabled = true;
+            btnCancel.Enabled = false;
             threads_numericUpDown.Enabled = true;
             iterations_numericUpDown.Enabled = true;
             queryDelay_numericUpDown.Enabled = true;
@@ -263,9 +263,9 @@ namespace SQLQueryStress
             }
         }
 
-        private void cancel_button_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            cancel_button.Enabled = false;
+            btnCancel.Enabled = false;
 
             _backgroundWorkerCTS?.Cancel();
             _backgroundWorkerCTS?.Dispose();
@@ -286,7 +286,7 @@ namespace SQLQueryStress
             dbselect.ShowDialog();
         }
 
-        private void exceptions_button_Click(object sender, EventArgs e)
+        private void btnExceptions_Click(object sender, EventArgs e)
         {
             totalExceptions_textBox_Click(null, null);
         }
@@ -296,7 +296,7 @@ namespace SQLQueryStress
             Dispose();
         }
 
-        private void go_button_Click(object sender, EventArgs e)
+        private void btnGo_Click(object sender, EventArgs e)
         {
             if (!_settings.MainDbConnectionInfo.TestConnection())
             {
@@ -327,8 +327,8 @@ namespace SQLQueryStress
             actualSeconds_textBox.Text = Dashes;
             cpuTime_textBox.Text = Dashes;
             logicalReads_textBox.Text = Dashes;
-            go_button.Enabled = false;
-            cancel_button.Enabled = true;
+            btnGo.Enabled = false;
+            btnCancel.Enabled = true;
             iterations_numericUpDown.Enabled = false;
             threads_numericUpDown.Enabled = false;
             queryDelay_numericUpDown.Enabled = false;
@@ -494,10 +494,11 @@ namespace SQLQueryStress
                 MessageBox.Show(Resources.MustSetValidDbConnInfo);
                 return;
             }
-
+            btnCleanBuffer.Enabled = false;
             MessageBox.Show(LoadEngine.ExecuteCommand(_settings.MainDbConnectionInfo.ConnectionString, "DBCC DROPCLEANBUFFERS")
                 ? "Buffers cleared"
                 : "Errors encountered");
+            btnCleanBuffer.Enabled = true;
         }
 
         private void btnFreeCache_Click(object sender, EventArgs e)
@@ -507,14 +508,15 @@ namespace SQLQueryStress
                 MessageBox.Show(Resources.MustSetValidDbConnInfo);
                 return;
             }
-
+            btnFreeCache.Enabled = false;
             MessageBox.Show(LoadEngine.ExecuteCommand(_settings.MainDbConnectionInfo.ConnectionString, "DBCC FREEPROCCACHE")
                 ? "Cache freed"
                 : "Errors encountered");
+            btnFreeCache.Enabled = true;
         }
 
 
-        private void toTextToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var saveFileDialog = new SaveFileDialog
             {
@@ -559,7 +561,7 @@ namespace SQLQueryStress
             tw.WriteLine(string.Empty);
         }
 
-        private void toClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -574,7 +576,7 @@ namespace SQLQueryStress
             }
         }
 
-        private void toCsvToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToCsvToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var saveFileDialog = new SaveFileDialog
             {

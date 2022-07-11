@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -406,8 +407,15 @@ namespace SQLQueryStress
                                 //TODO: This could be made better
                                 if (_forceDataRetrieval)
                                 {
+                                    _queryComm.Connection.StatisticsEnabled = true; // TODO: Optionify this
                                     var reader = _queryComm.ExecuteReader();
                                     Thread.Sleep(0);
+
+                                    var columns = new List<string>();
+                                    for (int colIndex = 0; colIndex < reader.FieldCount; colIndex++)
+                                    {
+                                        columns.Add(reader.GetName(colIndex));
+                                    }
 
                                     do
                                     {
@@ -421,6 +429,27 @@ namespace SQLQueryStress
                                             Thread.Sleep(0);
                                         }
                                     } while (!runCancelled && reader.NextResult());
+
+                                    // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/provider-statistics-for-sql-server
+                                    var stats = _queryComm.Connection.RetrieveStatistics();
+                                    string path = @"c:\tmp\sqlquerystress\";
+                                    if (!Directory.Exists(path))
+                                    {
+                                        Directory.CreateDirectory(path);
+                                    }
+                                    using (TextWriter tw = new StreamWriter(path + ".stats", true))
+                                    {
+                                        tw.WriteLine("ExecutionTime: {0} sec", Math.Round((double)(long)stats["ExecutionTime"] / 1000, 2));
+                                        tw.WriteLine("NetworkServerTime: {0} sec", Math.Round((double)(long)stats["NetworkServerTime"] / 1000, 2));
+                                        tw.WriteLine("ConnectionTime: {0} sec", Math.Round((double)(long)stats["ConnectionTime"] / 1000, 2));
+                                        tw.WriteLine("BytesSent: {0}", stats["BytesSent"]);
+                                        tw.WriteLine("BytesReceived: {0}", stats["BytesReceived"]);
+                                        tw.WriteLine("IduCount: {0}", stats["IduCount"]);
+                                        tw.WriteLine("IduRows: {0}", stats["IduRows"]);
+                                        tw.WriteLine("SelectCount: {0}", stats["SelectCount"]);
+                                        tw.WriteLine("SelectRows: {0}", stats["SelectRows"]);
+                                        tw.WriteLine("ServerRoundtrips: {0}", stats["ServerRoundtrips"]);
+                                    }
                                 }
                                 else
                                 {

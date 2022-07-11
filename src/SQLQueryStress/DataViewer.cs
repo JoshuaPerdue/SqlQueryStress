@@ -17,19 +17,18 @@ namespace SQLQueryStress
 
         public DataTable DataView { get; set; }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void frmDataViewer_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = DataView;
+            dgvDataViewer.DataSource = DataView;
 
-            var columnWidth = (dataGridView1.Width - 41) / DataView.Columns.Count;
-
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
-                col.Width = columnWidth;
+            foreach (DataGridViewColumn col in dgvDataViewer.Columns)
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgvDataViewer.Columns.GetLastColumn( DataGridViewElementStates.Visible, DataGridViewElementStates.None).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public void Repaint()
         {
-            dataGridView1.Invalidate();
+            dgvDataViewer.Invalidate();
         }
     }
 }

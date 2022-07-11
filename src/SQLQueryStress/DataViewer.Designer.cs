@@ -28,44 +28,46 @@ namespace SQLQueryStress
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvDataViewer = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataViewer)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvDataViewer
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(629, 331);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvDataViewer.AllowUserToAddRows = false;
+            this.dgvDataViewer.AllowUserToDeleteRows = false;
+            this.dgvDataViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDataViewer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvDataViewer.Location = new System.Drawing.Point(14, 14);
+            this.dgvDataViewer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvDataViewer.Name = "dgvDataViewer";
+            this.dgvDataViewer.ReadOnly = true;
+            this.dgvDataViewer.ShowEditingIcon = false;
+            this.dgvDataViewer.Size = new System.Drawing.Size(734, 382);
+            this.dgvDataViewer.TabIndex = 0;
             // 
             // DataViewer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 355);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(762, 410);
+            this.Controls.Add(this.dgvDataViewer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DataViewer";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "DataViewer";
+            this.Load += new System.EventHandler(this.frmDataViewer_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataViewer)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvDataViewer;
     }
 }
