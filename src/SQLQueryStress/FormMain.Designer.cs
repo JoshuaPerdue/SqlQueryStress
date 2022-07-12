@@ -62,7 +62,7 @@ namespace SQLQueryStress
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGo = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.iterations_numericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -231,18 +231,18 @@ namespace SQLQueryStress
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // btnGo
+            // btnStart
             // 
-            this.btnGo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnGo.Location = new System.Drawing.Point(3, 4);
-            this.btnGo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(109, 44);
-            this.btnGo.TabIndex = 0;
-            this.btnGo.Text = "GO";
-            this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            this.btnStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStart.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnStart.Location = new System.Drawing.Point(3, 4);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(109, 44);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // label2
             // 
@@ -672,7 +672,7 @@ namespace SQLQueryStress
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnGo, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnStart, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(239, 4);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -812,7 +812,7 @@ namespace SQLQueryStress
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown iterations_numericUpDown;

@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -407,8 +408,11 @@ namespace SQLQueryStress
                                 //TODO: This could be made better
                                 if (_forceDataRetrieval)
                                 {
+                                    // https://docs.microsoft.com/en-us/sql/t-sql/statements/set-statistics-xml-transact-sql?redirectedfrom=MSDN&view=sql-server-ver16
                                     _queryComm.Connection.StatisticsEnabled = true; // TODO: Optionify this
-                                    var reader = _queryComm.ExecuteReader();
+                                    _queryComm.CommandText = _queryComm.CommandText.Insert(0, "SET STATISTICS XML ON;\r\n");
+
+                                    using var reader = _queryComm.ExecuteReader();
                                     Thread.Sleep(0);
 
                                     var columns = new List<string>();
@@ -421,41 +425,55 @@ namespace SQLQueryStress
                                     {
                                         Thread.Sleep(0);
 
-                                        while (!runCancelled && reader.Read())
+                                        if (reader.GetName(0) == "Microsoft SQL Server 2005 XML Showplan")
                                         {
-                                            //grab the first column to force the row down the pipe
-                                            // ReSharper disable once UnusedVariable
-                                            var x = reader[0];
-                                            Thread.Sleep(0);
+                                            if (_outInfo.XMLPlans == null)
+                                            {
+                                                _outInfo.XMLPlans = new List<string>();
+                                            }
+                                            reader.Read();
+                                            _outInfo.XMLPlans.Add(reader.GetString(0));
+                                        }
+                                        else
+                                        {
+                                            while (!runCancelled && reader.Read())
+                                            {
+                                                //grab the first column to force the row down the pipe
+                                                // ReSharper disable once UnusedVariable
+                                                var x = reader[0];
+                                                Thread.Sleep(0);
+                                            }
                                         }
                                     } while (!runCancelled && reader.NextResult());
-
-                                    // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/provider-statistics-for-sql-server
-                                    var stats = _queryComm.Connection.RetrieveStatistics();
-                                    string path = @"c:\tmp\sqlquerystress\";
-                                    if (!Directory.Exists(path))
-                                    {
-                                        Directory.CreateDirectory(path);
-                                    }
-                                    using (TextWriter tw = new StreamWriter(path + ".stats", true))
-                                    {
-                                        tw.WriteLine("ExecutionTime: {0} sec", Math.Round((double)(long)stats["ExecutionTime"] / 1000, 2));
-                                        tw.WriteLine("NetworkServerTime: {0} sec", Math.Round((double)(long)stats["NetworkServerTime"] / 1000, 2));
-                                        tw.WriteLine("ConnectionTime: {0} sec", Math.Round((double)(long)stats["ConnectionTime"] / 1000, 2));
-                                        tw.WriteLine("BytesSent: {0}", stats["BytesSent"]);
-                                        tw.WriteLine("BytesReceived: {0}", stats["BytesReceived"]);
-                                        tw.WriteLine("IduCount: {0}", stats["IduCount"]);
-                                        tw.WriteLine("IduRows: {0}", stats["IduRows"]);
-                                        tw.WriteLine("SelectCount: {0}", stats["SelectCount"]);
-                                        tw.WriteLine("SelectRows: {0}", stats["SelectRows"]);
-                                        tw.WriteLine("ServerRoundtrips: {0}", stats["ServerRoundtrips"]);
-                                    }
                                 }
                                 else
                                 {
                                     _queryComm.ExecuteNonQuery();
                                     Thread.Sleep(0);
                                 }
+
+                                // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/provider-statistics-for-sql-server
+                                IDictionary stats = _queryComm.Connection.RetrieveStatistics();
+                                _outInfo.Stats = stats;
+
+                                //string path = @"c:\tmp\sqlquerystress\";
+                                //if (!Directory.Exists(path))
+                                //{
+                                //    Directory.CreateDirectory(path);
+                                //}
+                                //using (TextWriter tw = new StreamWriter(path + ".stats", true))
+                                //{
+                                //    tw.WriteLine("ExecutionTime: {0} sec", Math.Round((double)(long)stats["ExecutionTime"] / 1000, 2));
+                                //    tw.WriteLine("NetworkServerTime: {0} sec", Math.Round((double)(long)stats["NetworkServerTime"] / 1000, 2));
+                                //    tw.WriteLine("ConnectionTime: {0} sec", Math.Round((double)(long)stats["ConnectionTime"] / 1000, 2));
+                                //    tw.WriteLine("BytesSent: {0}", stats["BytesSent"]);
+                                //    tw.WriteLine("BytesReceived: {0}", stats["BytesReceived"]);
+                                //    tw.WriteLine("IduCount: {0}", stats["IduCount"]);
+                                //    tw.WriteLine("IduRows: {0}", stats["IduRows"]);
+                                //    tw.WriteLine("SelectCount: {0}", stats["SelectCount"]);
+                                //    tw.WriteLine("SelectRows: {0}", stats["SelectRows"]);
+                                //    tw.WriteLine("ServerRoundtrips: {0}", stats["ServerRoundtrips"]);
+                                //}
 
                                 _sw.Stop();
                             }
@@ -565,6 +583,8 @@ namespace SQLQueryStress
             public bool Finished;
             public int LogicalReads;
             public TimeSpan Time;
+            public IDictionary Stats;
+            public List<string> XMLPlans;
 
             // Remaining active threads for the load
             public int ActiveThreads;

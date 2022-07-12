@@ -135,7 +135,7 @@ namespace SQLQueryStress
 
         private void StartProcessing(object sender, EventArgs e)
         {
-            btnGo.PerformClick();
+            btnStart.PerformClick();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -215,7 +215,7 @@ namespace SQLQueryStress
 
             UpdateUi();
 
-            btnGo.Enabled = true;
+            btnStart.Enabled = true;
             btnCancel.Enabled = false;
             threads_numericUpDown.Enabled = true;
             iterations_numericUpDown.Enabled = true;
@@ -296,7 +296,7 @@ namespace SQLQueryStress
             Dispose();
         }
 
-        private void btnGo_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             if (!_settings.MainDbConnectionInfo.TestConnection())
             {
@@ -327,7 +327,7 @@ namespace SQLQueryStress
             actualSeconds_textBox.Text = Dashes;
             cpuTime_textBox.Text = Dashes;
             logicalReads_textBox.Text = Dashes;
-            btnGo.Enabled = false;
+            btnStart.Enabled = false;
             btnCancel.Enabled = true;
             iterations_numericUpDown.Enabled = false;
             threads_numericUpDown.Enabled = false;
